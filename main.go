@@ -10,14 +10,13 @@ import (
 )
 
 const (
-	INSTALL                 = "i"
-	SEARCH                  = "s"
-	INSTALL_SEARCH          = "is"
-	INSTALL_DEEP_MAX_LENGTH = "mx"
+	INSTALL         = "i"
+	INSTALL_SEARCH  = "is"
+	SEARCH_CAPACITY = "c"
 )
 
 func main() {
-	var COMMANDS_ARRAY = []string{INSTALL, INSTALL_SEARCH, INSTALL_DEEP_MAX_LENGTH, SEARCH}
+	var COMMANDS_ARRAY = []string{INSTALL, INSTALL_SEARCH, SEARCH_CAPACITY}
 
 	args := os.Args[1:]
 	recivedArgument, err := internal.ArgumentsFormatter(args, COMMANDS_ARRAY)
@@ -46,7 +45,7 @@ func main() {
 			maxResultLength := 4
 			for _, subCommand := range recivedArgument {
 				switch subCommand.Commad {
-				case INSTALL_DEEP_MAX_LENGTH:
+				case SEARCH_CAPACITY:
 					input_int, err := strconv.Atoi(subCommand.Value)
 
 					if err != nil {

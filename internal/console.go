@@ -11,7 +11,7 @@ import (
 )
 
 func ConsoleOutput(pkgName string, description string) (bool, error) {
-	fmt.Println("Finded the following package: " + pkgName)
+	fmt.Println("=> The following package was found: " + pkgName)
 	fmt.Println(description)
 	fmt.Print("Insatall [ Y/n ] ")
 	reader := bufio.NewReader(os.Stdin)
@@ -38,13 +38,15 @@ func ConsoleOutput(pkgName string, description string) (bool, error) {
 	}
 }
 func ConsoleOutputMultipleChoise(pkgNames []requests.PackageData) (int, error) {
-	fmt.Println("Finded the following packages: ")
+	fmt.Println()
+	fmt.Println("=> The following packages were found: ")
+	fmt.Println()
 	for i, finded_package := range pkgNames {
-		fmt.Printf("[%v] Name:  %v \n", i, finded_package.PkgName)
+		fmt.Printf("[%v] Name:  %v \n", i+1, finded_package.PkgName)
 		fmt.Printf("Description: %v\n\n", finded_package.PkgDescription)
 
 	}
-	fmt.Print("=> Provide index to install : ")
+	fmt.Print("=> Provide install number : ")
 
 	reader := bufio.NewReader(os.Stdin)
 	input, err := reader.ReadString('\n')
@@ -64,5 +66,5 @@ func ConsoleOutputMultipleChoise(pkgNames []requests.PackageData) (int, error) {
 			return input_int, nil
 		}
 	}
-	return -1, errors.New("not a valid index")
+	return -1, errors.New("provide a valid index")
 }

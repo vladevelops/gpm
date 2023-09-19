@@ -4,16 +4,16 @@ import "errors"
 
 func ArgumentsFormatter(args []string, COMMANDS_ARRAY []string) ([]validCommand, error) {
 	baseHelpString := `
-gpm is a tool for managing the instalation for go packeges
+GPM is a tool for managing the installation of Go packages.
 
 Usage: 
 	gpm <command> [value]
 
 The commands are:
 
-	i  <install>                  install package
-	id <install deep>             serch n packages and let you choose with to install
-	mx <use with install deep>    max length list for serch results
+	i  <install>                  The installation process will begin with the first parsed package.
+	is <install search>           This command enables you to search packages and grants you the flexibility to handpick which package you'd like to install
+	c  <use with install search>  Max n for search results, only to use with [is] command
 `
 	if len(args) == 0 {
 		// fmt.Println("here")

@@ -1,20 +1,22 @@
 # GPM go package manager helper
+
 ## Like npm but in go
-    
-This tool is make to help you with downloading and instaling go packages more easily. Espired by the Nodejs npm it can instal and find go backages from the main repository.
+
+This tool is a simple and lightweight Go package manager, inspired by Node.js npm. It can find and install Go packages. Written entirely in Go with no external dependencies, it provides you with the ability to search pkg.go.dev without leaving your terminal. Additionally, it solves the issue of remembering the full path to a package. After the installation is finished, GMP will return the full path, allowing you to easily copy and paste it into your import block.
 
 ## Installation
 
-Go to gitub repository [git repo](https://github.com/bytesociety/gpm) and clone the repo to install **gpm**.
+Go to gitub repository [git repo](https://github.com/vladevelops/gpm) and clone the repo to install **gpm**.
 
 ```bash
 cd gpm
-go install 
+go install
 ```
-    This will install a gpm build in your GOPATH/bin directory 
 
+    This will install a gpm build in your GOPATH/bin directory
 
-## Usage 
+## Usage
+
 ```bash
 gpm <command> value
 
@@ -22,16 +24,17 @@ gpm <command> value
 
 The commands are:
 
-| Command  | Description                |
-|:--------:|----------------------------|
-|  **`i`** | install first finded package |
-|  **`id`** | serch n packages and let you choose which to install |
-|  **`mx`** | max length list for serch results, only to use with **`id`** command|
+|            Command            | Description                                                                                                                                                                                                                                                                                 |
+| :---------------------------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|       **`i <install>`**       | The process will start with the installation of the first package in the parsed list.                                                                                                                                                                                                       |
+| **`is <search and install>`** | This command enables you to search packages and grants you the flexibility to handpick which package you'd like to install. It empowers you with the ability to browse through the search results and make informed decisions about the installation of packages that best suit your needs. |
+|      **`c <capacity>`**       | Max n for serch results, only to use with **`is`** command ex: `gpm is websocket  c 6`                                                                                                                                                                                                      |
 
 ## Development
+
 Pull request are more then wellcome.
 
-Please feel free to add fetures 
+Please feel free to add fetures
 
 ## License
 

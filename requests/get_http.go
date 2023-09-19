@@ -30,40 +30,16 @@ func getStringFromHttp(queryParam string, method string) (string, error) {
 	}
 	return string(body), nil
 }
-
-func ParseHttpString(queryParam string) (string, string) {
-	var rawHtmlString string
+func getRawHTML(queryParam string) string {
 	rawHtmlStringPost, err := getStringFromHttp(queryParam, "POST")
 	if strings.TrimSpace(rawHtmlStringPost) == "Method Not Allowed" {
 		rawHtmlStringPost, err = getStringFromHttp(queryParam, "GET")
 	}
-	rawHtmlString = rawHtmlStringPost
-
-	getLinesFromString := strings.Split(rawHtmlString, "\n")
 	if err != nil {
 		fmt.Println(err)
 	}
-	var resultPackage, description string
-	for i := range getLinesFromString {
-		// search result
 
-		searchResultFinded := strings.Contains(getLinesFromString[i], "search result")
-		extra_hrferFinded := strings.Contains(getLinesFromString[i], "href")
-		if searchResultFinded && extra_hrferFinded {
-			var cleanSpaces string = strings.TrimSpace(getLinesFromString[i])
-			resultPackage = strings.Split(cleanSpaces, "\"")[1][1:]
-		}
-
-		searchResultDescription := strings.Contains(getLinesFromString[i], "SearchSnippet-synopsis")
-
-		if searchResultDescription {
-			description = strings.TrimSpace(getLinesFromString[i+1])
-			break
-		}
-
-	}
-	// Parse the string
-	return resultPackage, description
+	return rawHtmlStringPost
 }
 
 type PackageData struct {
@@ -71,19 +47,12 @@ type PackageData struct {
 	PkgDescription string
 }
 
-func ParseHttpStringDeep(queryParam string, maxResultLength int) []PackageData {
+func ParseHttpString(queryParam string, maxResultLength int) []PackageData {
 
-	var rawHtmlString string
-	rawHtmlStringPost, err := getStringFromHttp(queryParam, "POST")
-	if strings.TrimSpace(rawHtmlStringPost) == "Method Not Allowed" {
-		rawHtmlStringPost, err = getStringFromHttp(queryParam, "GET")
-	}
-	rawHtmlString = rawHtmlStringPost
+	rawHtmlString := getRawHTML(queryParam)
 
 	getLinesFromString := strings.Split(rawHtmlString, "\n")
-	if err != nil {
-		fmt.Println(err)
-	}
+
 	var packageOptions []PackageData
 	var resultPackage, description string
 	for i := range getLinesFromString {
@@ -107,7 +76,6 @@ func ParseHttpStringDeep(queryParam string, maxResultLength int) []PackageData {
 			packageOptions = append(packageOptions, d)
 			description = ""
 			resultPackage = ""
-
 		}
 		if len(packageOptions) == maxResultLength {
 			break

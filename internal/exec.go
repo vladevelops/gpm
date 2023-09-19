@@ -2,43 +2,55 @@ package internal
 
 import (
 	"fmt"
+	"log"
 	"os/exec"
+	"strings"
+	"sync"
 	"time"
 )
 
+// modified version of this example - https://medium.com/@j.d.livni/create-a-load-bar-in-go-f158837ff4c4
+//
+
+func printProgressBar(prefix string, length int) {
+	total := 100
+	fill := "-"
+	for i := 0; i < total; i++ {
+		iteration := i + 1
+		filledLength := int(length * iteration / total)
+		end := "*"
+		if iteration == total {
+			end = "-"
+		}
+		bar := strings.Repeat(fill, filledLength) + end + strings.Repeat("-", (length-filledLength))
+		fmt.Printf("\r%s [%s]", prefix, bar)
+
+		time.Sleep(15 * time.Millisecond)
+	}
+}
+
+var wt sync.WaitGroup
+
 func InstallPackage(pkgNameFullPath string) {
-	fmt.Println("install requested")
+	fmt.Println("Installing....")
 	goGet := exec.Command("go", "get", pkgNameFullPath)
-
-	ch := make(chan error)
-	printProgress := true
+	wt.Add(1)
 	go func() {
-		ch <- goGet.Run()
-		printProgress = false
-	}()
-	go func() {
+		result := goGet.Run()
 
-		counter := 0
-		fmt.Print("\033[s") // save the cursor position
-		for {
-
-			fmt.Print("\033[u\033[K")
-			if !printProgress {
-				break
-			}
-			if counter == 50 {
-				counter = 0
-			}
-			renderString := ""
-			for i := 0; i < counter; i++ {
-				renderString += "="
-			}
-			counter++
-			fmt.Print("|" + renderString + ">")
-			time.Sleep(15 * time.Microsecond)
-
+		if result == nil {
+			wt.Done()
+			fmt.Println()
+		} else {
+			wt.Done()
+			log.Fatal("go get command failed")
 		}
 	}()
-	<-ch
-	fmt.Print("\033[u\033[K")
+	go func() {
+		for {
+			printProgressBar("Progress", 25)
+		}
+	}()
+
+	wt.Wait()
 }

@@ -44,7 +44,7 @@ func ConsoleOutputMultipleChoise(pkgNames []requests.PackageData) (int, error) {
 		fmt.Printf("Description: %v\n\n", finded_package.PkgDescription)
 
 	}
-	fmt.Print("Whitch index to install [ x ] ")
+	fmt.Print("=> Provide index to install : ")
 
 	reader := bufio.NewReader(os.Stdin)
 	input, err := reader.ReadString('\n')

@@ -1,4 +1,4 @@
-# GPM go package manager helper
+# GPM go package manager tool
 
 ## Like npm but in go
 
@@ -6,7 +6,7 @@ This tool is a simple and lightweight Go package manager, inspired by Node.js np
 
 ## Installation
 
-Go to gitub repository [git repo](https://github.com/vladevelops/gpm) and clone the repo to install **gpm**.
+Go to github repository [github repo](https://github.com/vladevelops/gpm) and clone the repo to install **gpm**.
 
 ```bash
 cd gpm
@@ -20,15 +20,42 @@ go install
 ```bash
 gpm <command> value
 
+
+
+ex:
+gpm i websocket
+
+return
+Usage : import "github.com/gorilla/websocket"
+ex:
+gpm is websocket
+
+return
+
+[1] Name:  github.com/gorilla/websocket
+Description: Package websocket implements the WebSocket protocol defined in RFC 6455.
+
+[2] Name:  golang.org/x/net/websocket
+Description: Package websocket implements a client and server for the WebSocket protocol as specified in RFC 6455.
+
+[3] Name:  nhooyr.io/websocket
+Description: Package websocket implements the RFC 6455 WebSocket protocol.
+
+[4] Name:  v2ray.com/core/transport/internet/websocket
+Description: Package websocket implements Websocket transport Websocket transport implements an HTTP(S) compliable, surveillance proof transport method with plausible deniability.
+
+
 ```
+
+And after you provide which package to go get, it will be installed, and the full path will be returned.
 
 The commands are:
 
-|            Command            | Description                                                                                                                                                                                                                                                                                 |
-| :---------------------------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|       **`i <install>`**       | The process will start with the installation of the first package in the parsed list.                                                                                                                                                                                                       |
-| **`is <search and install>`** | This command enables you to search packages and grants you the flexibility to handpick which package you'd like to install. It empowers you with the ability to browse through the search results and make informed decisions about the installation of packages that best suit your needs. |
-|      **`c <capacity>`**       | Max n for serch results, only to use with **`is`** command ex: `gpm is websocket  c 6`                                                                                                                                                                                                      |
+|          Command          | Description                                                                                                                                                                                                                                                                                 |
+| :-----------------------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|     **`i <install>`**     | The process will start with the installation of the first package in the parsed list.                                                                                                                                                                                                       |
+| **`is <search install>`** | This command enables you to search packages and grants you the flexibility to handpick which package you'd like to install. It empowers you with the ability to browse through the search results and make informed decisions about the installation of packages that best suit your needs. |
+|    **`c <capacity>`**     | Max n for serch results, only to use with **`is`** command ex: `gpm is websocket  c 6`                                                                                                                                                                                                      |
 
 ## Development
 

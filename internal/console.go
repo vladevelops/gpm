@@ -62,8 +62,8 @@ func ConsoleOutputMultipleChoise(pkgNames []requests.PackageData) (int, error) {
 		return -1, errors.New("not an integer")
 	}
 	for i := 0; i < len(pkgNames); i++ {
-		if input_int == i {
-			return input_int, nil
+		if input_int-1 == i {
+			return input_int - 1, nil
 		}
 	}
 	return -1, errors.New("provide a valid index")

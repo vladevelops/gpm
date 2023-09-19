@@ -22,8 +22,6 @@ gpm <command> value
 
 ```
 
-And after you provide which package to go get, it will be installed, and the full path will be returned.
-
 The commands are:
 
 |          Command          | Description                                                                                                                                                                                                                                                                                 |
@@ -39,7 +37,7 @@ simple [install]:
 ```bash
 gpm i websocket
 
-return
+returns
 Usage : import "github.com/gorilla/websocket"
 ```
 
@@ -47,7 +45,7 @@ gpm is [search install]
 
 ```bash
 gpm is websocket
-
+returns
 [1] Name:  github.com/gorilla/websocket
 Description: Package websocket implements the WebSocket protocol defined in RFC 6455.
 
@@ -60,6 +58,10 @@ Description: Package websocket implements the RFC 6455 WebSocket protocol.
 [4] Name:  v2ray.com/core/transport/internet/websocket
 Description: Package websocket implements Websocket transport Websocket transport implements an HTTP(S) compliable, surveillance proof transport method with plausible deniability.
 ```
+
+And after you provide which package to `go get`, it will be installed, and the full path will be returned.
+
+---
 
 ## Development
 

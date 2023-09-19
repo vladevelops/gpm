@@ -20,17 +20,33 @@ go install
 ```bash
 gpm <command> value
 
+```
 
+And after you provide which package to go get, it will be installed, and the full path will be returned.
 
-ex:
+The commands are:
+
+|          Command          | Description                                                                                                                                                                                                                                                                                 |
+| :-----------------------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|     **`i <install>`**     | The process will start with the installation of the first package in the parsed list.                                                                                                                                                                                                       |
+| **`is <search install>`** | This command enables you to search packages and grants you the flexibility to handpick which package you'd like to install. It empowers you with the ability to browse through the search results and make informed decisions about the installation of packages that best suit your needs. |
+|    **`c <capacity>`**     | Max n for serch results, only to use with **`is`** command ex: `gpm is websocket  c 6`                                                                                                                                                                                                      |
+
+Here some examples
+
+simple [install]:
+
+```bash
 gpm i websocket
 
 return
 Usage : import "github.com/gorilla/websocket"
-ex:
-gpm is websocket
+```
 
-return
+gpm is [search install]
+
+```bash
+gpm is websocket
 
 [1] Name:  github.com/gorilla/websocket
 Description: Package websocket implements the WebSocket protocol defined in RFC 6455.
@@ -43,19 +59,7 @@ Description: Package websocket implements the RFC 6455 WebSocket protocol.
 
 [4] Name:  v2ray.com/core/transport/internet/websocket
 Description: Package websocket implements Websocket transport Websocket transport implements an HTTP(S) compliable, surveillance proof transport method with plausible deniability.
-
-
 ```
-
-And after you provide which package to go get, it will be installed, and the full path will be returned.
-
-The commands are:
-
-|          Command          | Description                                                                                                                                                                                                                                                                                 |
-| :-----------------------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|     **`i <install>`**     | The process will start with the installation of the first package in the parsed list.                                                                                                                                                                                                       |
-| **`is <search install>`** | This command enables you to search packages and grants you the flexibility to handpick which package you'd like to install. It empowers you with the ability to browse through the search results and make informed decisions about the installation of packages that best suit your needs. |
-|    **`c <capacity>`**     | Max n for serch results, only to use with **`is`** command ex: `gpm is websocket  c 6`                                                                                                                                                                                                      |
 
 ## Development
 
